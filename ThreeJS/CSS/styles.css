@@ -1,0 +1,44 @@
+/* CSS reset
+   Sets a default for all elements in the CSS.
+   This ignores browser defaults to ensure a consistent baseline across different browsers.
+*/
+* {
+    margin: 0;
+    padding: 0;
+    font-family: 'Oswald', sans-serif;
+    box-sizing: border-box;
+}
+
+/*
+    Hide scroll bars
+*/
+body, html {
+    overflow: hidden;
+}
+
+.show-borders {
+	outline: 1px solid Black
+}
+
+#custom-box {
+    border-radius: 25px;
+    border: 2px solid cornflowerblue;
+    padding: 50px;
+    text-align: center;
+    background-color: aliceblue;
+    /* position: fixed; */
+    width: 95vw;
+    height: 95vh;
+}
+
+#experience {
+    position: fixed;
+    height: 100vh;
+    width: 100vw;
+    overflow: hidden;
+}
+
+#experience-canvas {
+    height: 100%;
+    width: 100%;
+}
