@@ -6,12 +6,12 @@ npx vite
 
 
 
+## Compression services
 
 https://gltf.report
-
-draco compress
-
+- Compresses 3D models
+- Use 'DRACO'
 
 https://squoosh.app
-web image texture compress
-use webP
+- Compresses images & textures
+- Use webP
