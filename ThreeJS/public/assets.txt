@@ -1,1 +1,0 @@
-Put assets here in `public`, otherwise you will have to create a vite config file
