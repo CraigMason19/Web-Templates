@@ -2,6 +2,7 @@ import * as THREE from 'three';
 import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
 
 import { Sizes } from './core/sizes';
+import { Camera } from './core/camera';
 
 document.addEventListener('keydown', function(event) {
 	if (event.key === 'd' || event.key === 'D') {
@@ -13,15 +14,21 @@ document.addEventListener('keydown', function(event) {
 
 
 
+
+
+
+
+
 const canvas = document.getElementById("experience-canvas")
 console.log(canvas)
 
 const sizes = new Sizes();
 
 
+const camera = new Camera(sizes);
+
 const scene = new THREE.Scene();
-const camera = new THREE.PerspectiveCamera( 75, sizes.aspectRatio, 0.1, 1000 );
-camera.position.z = 5;
+
 
 
 
@@ -34,7 +41,7 @@ renderer.setPixelRatio(sizes.pixelRatio);
 renderer.setSize( sizes.width, sizes.height );
 
 
-const controls = new OrbitControls( camera, renderer.domElement );
+const controls = new OrbitControls(camera.instance, renderer.domElement );
 controls.enableDamping = true;
 controls.dampingFactor = 0.05;
 controls.update();
@@ -61,8 +68,8 @@ scene.add( cube );
 
 window.addEventListener("resize", () => {
 	// Update Camera
-	camera.aspect = sizes.aspectRatio;
-	camera.updateProjectionMatrix()
+	camera.update();
+
 	
 	// Update Renderer
 	renderer.setPixelRatio(sizes.pixelRatio);
@@ -76,7 +83,7 @@ function update( time ) {
 
 	controls.update();
  
-	renderer.render( scene, camera );
+	renderer.render( scene, camera.instance );
 }
 
 function render( time ) {
