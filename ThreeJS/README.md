@@ -4,7 +4,15 @@ Assets are stored in `public`, otherwise you will have to create a vite config f
 
 ## Commands
 
+Install all packages
+```
+npm install
+```
+
+Run
+```
 npx vite
+```
 
 ## Compression services
 
