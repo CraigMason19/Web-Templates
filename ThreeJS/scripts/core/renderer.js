@@ -5,9 +5,9 @@ import * as THREE from 'three';
 
 
 export class Renderer {
-    constructor(sizes, canvas) {
+    constructor(sizes) {
         this.sizes = sizes;
-        this.canvas = canvas;
+        this.canvas = document.getElementById("experience-canvas");
 
         this.init();
     }

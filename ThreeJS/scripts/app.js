@@ -17,7 +17,7 @@ document.addEventListener('keydown', function(event) {
 
 
 
-const canvas = document.getElementById("experience-canvas")
+
 
 const sizes = new Sizes();
 
@@ -25,7 +25,7 @@ const camera = new Camera(sizes);
 
 const scene = new THREE.Scene();
 
-const renderer = new Renderer(sizes, canvas);
+const renderer = new Renderer(sizes);
 
 
 
@@ -36,11 +36,7 @@ const controls = new OrbitControls(camera.instance, renderer.instance.domElement
 controls.enableDamping = true;
 controls.dampingFactor = 0.05;
 controls.update();
-
-
-
-// document.body.appendChild( renderer.domElement );
-
+ 
 
 
 
