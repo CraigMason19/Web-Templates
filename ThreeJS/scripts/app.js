@@ -3,6 +3,8 @@ import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
 
 import { Sizes } from './core/sizes';
 import { Camera } from './core/camera';
+import { Renderer } from './core/renderer';
+
 
 document.addEventListener('keydown', function(event) {
 	if (event.key === 'd' || event.key === 'D') {
@@ -15,33 +17,22 @@ document.addEventListener('keydown', function(event) {
 
 
 
-
-
-
-
 const canvas = document.getElementById("experience-canvas")
-console.log(canvas)
 
 const sizes = new Sizes();
-
 
 const camera = new Camera(sizes);
 
 const scene = new THREE.Scene();
 
+const renderer = new Renderer(sizes, canvas);
 
 
 
 
-const renderer = new THREE.WebGLRenderer({
-	canvas: canvas, 
-	antialias: true
-});
-renderer.setPixelRatio(sizes.pixelRatio);
-renderer.setSize( sizes.width, sizes.height );
 
 
-const controls = new OrbitControls(camera.instance, renderer.domElement );
+const controls = new OrbitControls(camera.instance, renderer.instance.domElement );
 controls.enableDamping = true;
 controls.dampingFactor = 0.05;
 controls.update();
@@ -69,11 +60,9 @@ scene.add( cube );
 window.addEventListener("resize", () => {
 	// Update Camera
 	camera.update();
-
 	
 	// Update Renderer
-	renderer.setPixelRatio(sizes.pixelRatio);
-	renderer.setSize(sizes.width, sizes.height);
+	renderer.update();
 });
 
 
@@ -83,7 +72,7 @@ function update( time ) {
 
 	controls.update();
  
-	renderer.render( scene, camera.instance );
+	renderer.instance.render(scene, camera.instance );
 }
 
 function render( time ) {
@@ -92,4 +81,4 @@ function render( time ) {
 
 
 
-renderer.setAnimationLoop( update );
+renderer.instance.setAnimationLoop( update );
