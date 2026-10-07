@@ -1,17 +1,9 @@
 export class Sizes {
     constructor() {
-        this.init();
+        this.update()
     }
 
-    init() {
-        this.resize()
-
-        window.addEventListener("resize", () => {
-            this.resize();
-        });
-    }
-
-    resize() {
+    update() {
         this.width = window.innerWidth;
         this.height = window.innerHeight;
 

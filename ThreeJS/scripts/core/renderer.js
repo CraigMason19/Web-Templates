@@ -9,20 +9,12 @@ export class Renderer {
         this.sizes = sizes;
         this.canvas = document.getElementById("experience-canvas");
 
-        this.init();
-    }
-
-    init() {      
         this.instance = new THREE.WebGLRenderer({
             canvas: this.canvas, 
             antialias: true
         });
 
         this.update();
-    }
-
-    resize() {
-
     }
 
     update() {

@@ -1,12 +1,9 @@
-import * as THREE from 'three';
-import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
+import { Experience } from './experience/experience';
 
-import { Sizes } from './core/sizes';
-import { Camera } from './core/camera';
-import { Renderer } from './core/renderer';
+import { MainScene } from './experience/scenes/mainScene';
 
 
-document.addEventListener('keydown', function(event) {
+document.addEventListener('keydown', (event) => {
 	if (event.key === 'd' || event.key === 'D') {
 		document.querySelectorAll('*').forEach(el => {
 			el.classList.toggle('show-borders');
@@ -16,65 +13,12 @@ document.addEventListener('keydown', function(event) {
 
 
 
+const experience = new Experience();
+const mainScene = new MainScene();
 
+// Will need to be in a scene manager class
+mainScene.onEnter()
 
-
-const sizes = new Sizes();
-
-const camera = new Camera(sizes);
-
-const scene = new THREE.Scene();
-
-const renderer = new Renderer(sizes);
-
-
-
-
-
-
-const controls = new OrbitControls(camera.instance, renderer.instance.domElement );
-controls.enableDamping = true;
-controls.dampingFactor = 0.05;
-controls.update();
- 
-
-
-
-
-
-
-const geometry = new THREE.BoxGeometry( 1, 1, 1 );
-const material = new THREE.MeshBasicMaterial( { color: 0xfFF } );
-const cube = new THREE.Mesh( geometry, material );
-scene.add( cube );
-
-
-
-
-
-
-window.addEventListener("resize", () => {
-	// Update Camera
-	camera.update();
-	
-	// Update Renderer
-	renderer.update();
+experience.renderer.instance.setAnimationLoop((time) => {
+	mainScene.loop(time);
 });
-
-
-function update( time ) {
-	cube.rotation.x = time / 2000;
-	cube.rotation.y = time / 1000;
-
-	controls.update();
- 
-	renderer.instance.render(scene, camera.instance );
-}
-
-function render( time ) {
- 
-}
-
-
-
-renderer.instance.setAnimationLoop( update );
