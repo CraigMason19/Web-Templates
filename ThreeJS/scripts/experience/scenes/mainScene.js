@@ -9,14 +9,14 @@ export class MainScene extends BaseScene {
     constructor() {
         super();
         
-
+        // Controls
         this.controls = new OrbitControls(this.experience.camera.instance, this.experience.renderer.instance.domElement );
         this.controls.enableDamping = true;
         this.controls.dampingFactor = 0.05;
         this.controls.update();
 
+        // Cube
         const geometry = new THREE.BoxGeometry( 2, 2, 2 );
-
         const material = new THREE.MeshBasicMaterial( { color: 0xfFF } );
         this.cube = new THREE.Mesh( geometry, material );
         this.scene.add( this.cube );
@@ -25,7 +25,6 @@ export class MainScene extends BaseScene {
     resize() {}
 
     onEnter() {
-        console.log(this)
         document.addEventListener('keydown', (event) => {
             if (event.key === 'c' || event.key === 'C') {
                 this.cube.material.color.setHex(randomColor());
@@ -46,9 +45,11 @@ export class MainScene extends BaseScene {
         this.experience.renderer.instance.render(this.scene, this.experience.camera.instance);
     }
 
-    loop(time) 
-    { 
-        this.update(time);
-        this.render(time);
+    run() 
+    {
+        this.experience.renderer.instance.setAnimationLoop((time) => {
+            this.update(time);
+            this.render(time);
+        });
     }
 }

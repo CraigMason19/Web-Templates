@@ -19,5 +19,5 @@ export class BaseScene {
 
     render(time) {}
 
-    loop() {}
+    run() {}
 }

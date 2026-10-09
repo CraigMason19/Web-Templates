@@ -13,12 +13,8 @@ document.addEventListener('keydown', (event) => {
 
 
 
-const experience = new Experience();
+// Will need to be in a scene manager class
 const mainScene = new MainScene();
 
-// Will need to be in a scene manager class
 mainScene.onEnter()
-
-experience.renderer.instance.setAnimationLoop((time) => {
-	mainScene.loop(time);
-});
+mainScene.run();
